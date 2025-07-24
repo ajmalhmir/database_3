@@ -76,6 +76,12 @@ chmod +x userdata.sh
 
 6. Access your application at your EC2 instance's public IP address
 
+7. Access the admin panel at `http://your-ec2-ip/admin/` using the default credentials:
+   - Username: `admin`
+   - Password: `admin`
+
+   **Note:** It is highly recommended to change these default credentials immediately after first login
+
 ### Production Database Configuration
 
 For production deployment, it's recommended to use a more robust database like PostgreSQL instead of SQLite. The settings.py file includes a commented configuration for PostgreSQL that you can uncomment and configure with your database credentials:
@@ -132,6 +138,13 @@ You can add these to your ~/.bashrc file or set them in your systemd service fil
 3. **Permissions**: Ensure proper file permissions with `sudo chown -R ubuntu:www-data /home/ubuntu/database_3`
 4. **Firewall**: Verify security group settings in AWS console
 5. **Static Files**: If static files aren't loading, run `python manage.py collectstatic` again
+6. **Database Issues**: If you encounter database errors like "no such table" when accessing the admin panel, it means migrations haven't been applied. SSH into your instance and run:
+   ```bash
+   cd /home/ubuntu/database_3
+   source venv/bin/activate
+   python manage.py migrate
+   ```
+   Note: The updated deployment script now includes automatic migrations
 
 ### Maintenance and Updates
 
