@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-PROJECT_MAIN_DIR_NAME="database_3"
+PROJECT_MAIN_DIR_NAME="django-aws-ec2-nginx-gunicorn"
 
 # Validate variables
 if [ -z "$PROJECT_MAIN_DIR_NAME" ]; then
@@ -18,14 +18,6 @@ cd "/home/ubuntu/$PROJECT_MAIN_DIR_NAME"
 # Activate virtual environment
 echo "Activating virtual environment..."
 source "/home/ubuntu/$PROJECT_MAIN_DIR_NAME/venv/bin/activate"
-
-# Run database migrations
-echo "Running database migrations..."
-python manage.py migrate
-
-# Create superuser if it doesn't exist
-echo "Creating superuser if it doesn't exist..."
-python -c "import os; from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@example.com', 'admin')"
 
 # Run collectstatic command
 echo "Running collectstatic command..."

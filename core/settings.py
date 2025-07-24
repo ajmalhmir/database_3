@@ -20,12 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# In production, set this using environment variables
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-be5c0q(jki!yn*%sz(1te8tx9d8hni&f59%y_y^d7i%8*!@^e(')
+SECRET_KEY = 'django-insecure-be5c0q(jki!yn*%sz(1te8tx9d8hni&f59%y_y^d7i%8*!@^e('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Set DEBUG to False in production
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -40,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic', #Make sure to add this 
-    'rest_framework',
-    'customers',
 ]
 
 MIDDLEWARE = [
@@ -138,11 +134,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_URL = '/media/'
+MEDIA_URLS ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# WhiteNoise configuration for static files in production
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
